@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>designer.web</module>
+        <module>designer.server</module>
     </modules>
 
     <properties>
