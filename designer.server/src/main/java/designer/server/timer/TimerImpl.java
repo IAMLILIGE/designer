@@ -16,15 +16,15 @@ public class TimerImpl extends AbstractTimer {
         System.out.println(System.currentTimeMillis());
         int rejectSize = 6 ;
         //具体任务 入队列
+        //main线程:入队列 + reject
+        //和 线程池线程 抢占cpu
         for (int i = 0 ; i < rejectSize ; i ++ ){
             executor.execute(new Runnable() {
                 public void run() {
                     //具体线程业务内容
                     try {
-                        synchronized (index){//保证资源顺序输出???为什么加了锁还能有一样的数出现
+                        synchronized (index){//???为什么加了锁还能有一样的数出现
                             index++;
-                            //main线程:入队列 + reject
-                            //和 线程池线程 抢占cpu
                             System.out.println(Thread.currentThread().getName() + "-----" + index);
                         }
                     } catch (Exception e) {
